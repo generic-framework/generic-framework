@@ -15,7 +15,7 @@ namespace generic_framework.controller
         {
             return Ok(Products);
         }
-        //belirli idye göre değer döndürür
+
         // GET METODU: api/products/{id} 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
