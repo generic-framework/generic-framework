@@ -9,13 +9,13 @@ namespace generic_framework.controller
     {
         private static readonly List<string> Products = new() { "Laptop", "Phone", "Tablet" };
         //bütün listeyi getirir 
-        // GET: api/products
+        // GET metodu: api/products
         [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(Products);
         }
-
+        
         // GET METODU: api/products/{id} 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
