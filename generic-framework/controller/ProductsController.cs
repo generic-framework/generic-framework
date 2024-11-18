@@ -8,7 +8,7 @@ namespace generic_framework.controller
     public class ProductsController : ControllerBase
     {
         private static readonly List<string> Products = new() { "Laptop", "Phone", "Tablet" };
-        //bütün listeyi getirir
+        //bütün listeyi getirir 
         // GET: api/products
         [HttpGet]
         public IActionResult GetAll()
@@ -16,7 +16,7 @@ namespace generic_framework.controller
             return Ok(Products);
         }
 
-        // GET: api/products/{id}
+        // GET METODU: api/products/{id} 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
