@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Main.Server.Core.Entities.ProductProp.ProductEntities
+namespace Main.Server.Core.DTOs.ProductDTOs
 {
-    public class Product : BaseEntity
+    public class ProductDto : BaseDto
     {
         public string ProductName { get; set; }
 
         public string ProductDescription { get; set; }
-
     }
 }

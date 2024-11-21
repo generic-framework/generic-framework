@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Main.Server.Core.Entities.UserProp.UserEntities;
+using Main.Server.Core.Entities.UserEntities;
 
-namespace Main.Server.Core.Entities.RoleProp.RoleEntites
+namespace Main.Server.Core.DTOs.RoleDTOs
 {
-    public class Role : BaseEntity
+    public class RoleDto : BaseDto
     {
         public int RoleName { get; set; }
 
         public bool IsActive { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        public List<User> Users { get; set; }
     }
 }

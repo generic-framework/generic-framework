@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Main.Server.Core.Interfaces.User;
 
-namespace Main.Server.Service.User
+namespace Main.Server.Core.UnitOfWorks
 {
-    public class UserService :IUserService
+    public interface IUnitOfWorks
     {
-
+        void Commit();
+        Task CommitAsync();
     }
 }

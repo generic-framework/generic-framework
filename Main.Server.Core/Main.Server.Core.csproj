@@ -13,10 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\UserProp\UserDTOs\" />
-    <Folder Include="Entities\UserProp\UserEnums\" />
     <Folder Include="UnitOfWork\" />
-    <Folder Include="Repositories\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

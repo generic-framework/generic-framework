@@ -1,3 +1,6 @@
+using System.Reflection;
+using Main.Server.DataAccess;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +16,13 @@ builder.Services.AddSwaggerGen(options =>
         Description = "My API for demonstration",
     });
 });
-
+builder.Services.AddDbContext<AppDbContext>(x =>
+{
+    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerDevelopment"), option =>
+    {
+        option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
+    });
+});
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
