@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Main.Server.Core.Entities.RoleProp.RoleEntites;
+using Main.Server.Core.Entities.RoleEntities;
 
-namespace Main.Server.Core.Entities.UserProp.UserEntities
+namespace Main.Server.Core.Entities.UserEntities
 {
     public class User : BaseEntity
     {
