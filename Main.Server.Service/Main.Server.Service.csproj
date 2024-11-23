@@ -15,4 +15,10 @@
     <ProjectReference Include="..\Main.Server.DataAccess\Main.Server.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+    <Folder Include="Extentions\" />
+    <Folder Include="Hashing\" />
+  </ItemGroup>
+
 </Project>
