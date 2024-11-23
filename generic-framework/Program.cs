@@ -1,9 +1,15 @@
 using System.Reflection;
 using Main.Server.DataAccess;
+using Main.Server.Service.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+//Containerlerý ekle
+// jwt bearer
+// rate limiter
+// add output cache
+//appdbcontext-appsettings
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();  
@@ -16,6 +22,7 @@ builder.Services.AddSwaggerGen(options =>
         Description = "My API for demonstration",
     });
 });
+builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerDevelopment"), option =>
@@ -38,6 +45,8 @@ if (app.Environment.IsDevelopment())
 app.MapGet("/", () => "Hello World!");
 
 app.UseHttpsRedirection();
+
+// use authentication
 
 app.UseAuthentication(); 
 
