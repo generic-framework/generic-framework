@@ -23,5 +23,7 @@ namespace Main.Server.Core.Services
 
         Task AddAsync(T entity);
 
+        Task<bool> AnyAsync(Expression<Func<T, bool>> expression); 
+
     }
 }

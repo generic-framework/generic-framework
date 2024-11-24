@@ -1,15 +1,21 @@
 using System.Reflection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using generic_framework.Filters;
+using generic_framework.Middlewares;
+using generic_framework.Modules;
 using Main.Server.DataAccess;
 using Main.Server.Service.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-//Containerlerý ekle
+
 // jwt bearer
 // rate limiter
 // add output cache
-//appdbcontext-appsettings
+
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();  
@@ -22,6 +28,8 @@ builder.Services.AddSwaggerGen(options =>
         Description = "My API for demonstration",
     });
 });
+//Filtreleme yaparken örn id vererek get sorgusu çalýþtýrýldýgýnda eðer yoksa direk alltaki servisler çalýþmadan NotFoundFiltera düþer
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
 builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
@@ -30,6 +38,10 @@ builder.Services.AddDbContext<AppDbContext>(x =>
         option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
     });
 });
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+containerBuilder.RegisterModule(new RepoServiceModule()));
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -46,9 +58,11 @@ app.MapGet("/", () => "Hello World!");
 
 app.UseHttpsRedirection();
 
-// use authentication
+app.UseCustomException();
 
-app.UseAuthentication(); 
+app.UseAuthentication();
+
+app.UseAuthorization(); 
 
 app.MapControllers();
 
