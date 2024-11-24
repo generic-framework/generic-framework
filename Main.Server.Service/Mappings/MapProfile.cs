@@ -15,7 +15,7 @@ namespace Main.Server.Service.Mappings
 {
     public class MapProfile : Profile
     {
-        protected MapProfile()
+        public MapProfile()
         {
               CreateMap<User,UserDto>().ReverseMap();  
               CreateMap<Role,RoleDto>().ReverseMap();  

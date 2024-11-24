@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Main.Server.Core.DTOs
 {
-    public class BaseDto
+    public class NoContentDto
     {
-        public int Id { get; set; }
-
-        public DateTime CreatedDate { get; set; }
     }
 }
