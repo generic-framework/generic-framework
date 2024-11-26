@@ -31,6 +31,8 @@ namespace generic_framework.Modules
             // UnitOfWorks kaydı
             builder.RegisterType<UnitOfWorks>().As<IUnitOfWorks>();
 
+            builder.RegisterType<TokenHandler>().As<ITokenHandler>();
+
             // Repository ve Service'leri assembly taraması ile kaydet
             var apiAssembly = Assembly.GetExecutingAssembly();
             var repoAssembly = Assembly.GetAssembly(typeof(AppDbContext));
@@ -45,6 +47,8 @@ namespace generic_framework.Modules
                 .Where(x => x.Name.EndsWith("Service"))
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
+
+            
         }
     }
 }

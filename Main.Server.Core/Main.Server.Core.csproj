@@ -19,11 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\ProductDTOs\UpdateDTOs\" />
-    <Folder Include="DTOs\RoleDTOs\UpdateDTOs\" />
-    <Folder Include="DTOs\UserDTOs\UpdateDTOs\" />
     <Folder Include="UnitOfWork\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

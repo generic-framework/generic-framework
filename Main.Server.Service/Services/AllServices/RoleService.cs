@@ -13,11 +13,11 @@ namespace Main.Server.Service.Services.AllServices
 {
     public class RoleService : Service<Role>, IRoleService
     {
-        private readonly IRoleService _roleService;
+        private readonly IRoleRepository _roleRepository;
 
-        public RoleService(IGenericRepository<Role> repository, IUnitOfWorks unitOfWorks, IRoleService roleService) : base(repository, unitOfWorks)
+        public RoleService(IGenericRepository<Role> repository, IUnitOfWorks unitOfWorks, IRoleRepository roleRepository) : base(repository, unitOfWorks)
         {
-            _roleService = roleService;
+            _roleRepository = roleRepository;
         }
     }
 }

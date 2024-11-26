@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using generic_framework.Filters;
@@ -6,14 +7,32 @@ using generic_framework.Middlewares;
 using generic_framework.Modules;
 using Main.Server.DataAccess;
 using Main.Server.Service.Mappings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// jwt bearer
+
 // rate limiter
 // add output cache
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+    options =>
+    {
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = false,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Token:Issuer"],
+            ValidAudience = builder.Configuration["Token:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:SecurityKey"])),
+            ClockSkew = TimeSpan.Zero
+        };
+    });
+
 
 
 

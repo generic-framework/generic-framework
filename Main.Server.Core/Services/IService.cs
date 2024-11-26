@@ -21,7 +21,7 @@ namespace Main.Server.Core.Services
 
         void ChangeStatus(T enitiy);
 
-        Task AddAsync(T entity);
+        Task<T> AddAsync(T entity);
 
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression); 
 
