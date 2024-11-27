@@ -47,16 +47,19 @@ namespace Main.Server.Service.Services.AllServices
 
             var user = GetByEmail(userLoginDto.Email);
 
-            if (user == null) {
+            if (user == null) 
+            {
                 return null;
             }
-
-            var result = HashingHelper.VerifyPasswordHash(userLoginDto.Password, user.PasswordHash, user.PasswordSalt);
+            var result = false; 
+             result = HashingHelper.VerifyPasswordHash(userLoginDto.Password, user.PasswordHash, user.PasswordSalt);
                  
             List<Role> roles = new List<Role>();
 
             var role = await _roleRepository.GetByIdAsync(user.RoleId);
+
             roles.Add(role);
+
             if (result)
             {
                 token = _tokenHandler.CreateToken(user, roles);

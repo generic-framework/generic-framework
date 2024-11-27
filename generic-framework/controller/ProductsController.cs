@@ -6,6 +6,7 @@ using Main.Server.Core.DTOs.ProductDTOs;
 using Main.Server.Core.DTOs.ProductDTOs.UpdateDTOs;
 using Main.Server.Core.Entities.ProductEntities;
 using Main.Server.Core.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,7 @@ namespace generic_framework.controller
             _mapper = mapper;
         }
 
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -48,8 +50,10 @@ namespace generic_framework.controller
         [HttpGet("[action]")]
         public async Task<IActionResult> Remove(int id)
         {
-            int userId = 1;
+            int userId = GetUserFromToken();
+
             var product = await _productService.GetByIdAsync(id);
+
             product.UpdatedBy = userId;
 
             _productService.ChangeStatus(product);
@@ -60,7 +64,7 @@ namespace generic_framework.controller
         [HttpPost("Insert")]
         public async Task<IActionResult> Insert(ProductDto productDto)
         {
-            int userId = 1;
+            int userId = GetUserFromToken();
 
             var processEntity = _mapper.Map<Product>(productDto);
 
@@ -78,7 +82,7 @@ namespace generic_framework.controller
         [HttpPut("Update")]
         public async Task<IActionResult> Update(ProductUpdateDto productUpdateDto)
         {
-            int userId = 1;
+            int userId = GetUserFromToken();
 
             var currentProduct = await _productService.GetByIdAsync(productUpdateDto.Id);
 

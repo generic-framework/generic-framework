@@ -10,6 +10,7 @@ using Main.Server.Core.Entities.UserEntities;
 using Main.Server.Core.DTOs.UserDTOs.UpdateDTOs;
 using Main.Server.Core.Entities;
 using Main.Server.Service.Hashing;
+using Microsoft.AspNetCore.Authorization;
 
 namespace generic_framework.Controller
 {
@@ -50,8 +51,10 @@ namespace generic_framework.Controller
         [HttpGet("[action]")]
         public async Task<IActionResult> Remove(int id)
         {
-            int userId = 1;
+            int userId = GetUserFromToken();
+
             var user = await _userService.GetByIdAsync(id);
+
             user.UpdatedBy = userId;
 
             _userService.ChangeStatus(user);
@@ -62,7 +65,7 @@ namespace generic_framework.Controller
         [HttpPost("Insert")]
         public async Task<IActionResult> Insert(UserDto userDto)
         {
-            int userId = 1;
+            int userId = GetUserFromToken();
 
             var processEntity = _mapper.Map<User>(userDto);
 
@@ -87,7 +90,7 @@ namespace generic_framework.Controller
         [HttpPut("Update")]
         public async Task<IActionResult> Update(UserUpdateDto updateDto)
         {
-            int userId = 1;
+            int userId = GetUserFromToken();
 
             var currentUser = await _userService.GetByIdAsync(updateDto.Id);
 

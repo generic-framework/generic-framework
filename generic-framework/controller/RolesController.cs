@@ -46,8 +46,10 @@ namespace generic_framework.Controller
         [HttpGet("[action]")]
         public async Task<IActionResult> Remove(int id)
         {
-            int userId = 1;
+            int userId = GetUserFromToken();
+
             var role = await _roleService.GetByIdAsync(id);
+
             role.UpdatedBy = userId;
 
             _roleService.ChangeStatus(role);
@@ -58,7 +60,7 @@ namespace generic_framework.Controller
         [HttpPost("Insert")]
         public async Task<IActionResult> Insert(RoleDto roleDto)
         {
-            int userId = 1;
+            int userId = GetUserFromToken();
 
             var processEntity = _mapper.Map<Role>(roleDto);
 
@@ -76,7 +78,7 @@ namespace generic_framework.Controller
         [HttpPut("Update")]
         public async Task<IActionResult> Update(RoleUpdateDto updateDto)
         {
-            int userId = 1;
+            int userId = GetUserFromToken();
 
             var currentRole = await _roleService.GetByIdAsync(updateDto.Id);
 
