@@ -23,6 +23,7 @@ namespace Main.Server.DataAccess.Repositories
         }
         public async Task AddAsync(T entity)
         {
+            entity.Status = true;
             await _dbSet.AddAsync(entity);
         }
         //Belirtilen kriterlerde bir satır var mı yok mu  kontrolü için kullanılacak
