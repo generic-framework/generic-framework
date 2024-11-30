@@ -14,9 +14,18 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// CORS Ayarlarý
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowMyOrigin", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000") // React frontend'inizin bulunduðu domain
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
-// rate limiter
-// add output cache
+// JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
     options =>
     {
@@ -33,12 +42,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         };
     });
 
-
-
-
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();  
-builder.Services.AddSwaggerGen(options =>   
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
@@ -47,7 +53,8 @@ builder.Services.AddSwaggerGen(options =>
         Description = "My API for demonstration",
     });
 });
-//Filtreleme yaparken örn id vererek get sorgusu çalýþtýrýldýgýnda eðer yoksa direk alltaki servisler çalýþmadan NotFoundFiltera düþer
+
+// Filtreleme yaparken örn id vererek get sorgusu çalýþtýrýldýðýnda eðer yoksa direk altýnda servisler çalýþmadan NotFoundFilter'a düþer
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
 builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddDbContext<AppDbContext>(x =>
@@ -63,13 +70,16 @@ containerBuilder.RegisterModule(new RepoServiceModule()));
 
 var app = builder.Build();
 
+// CORS Middleware'ini kullanmak
+app.UseCors("AllowMyOrigin"); // CORS politikalarýný aktif hale getir
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger(); 
+    app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
-        options.RoutePrefix = string.Empty; 
+        options.RoutePrefix = string.Empty;
     });
 }
 
@@ -81,7 +91,7 @@ app.UseCustomException();
 
 app.UseAuthentication();
 
-app.UseAuthorization(); 
+app.UseAuthorization();
 
 app.MapControllers();
 
