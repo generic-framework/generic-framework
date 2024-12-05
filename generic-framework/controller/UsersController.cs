@@ -115,5 +115,40 @@ namespace generic_framework.Controller
             }
             return CreateActionResult(CustomResponseDto<Token>.Success(200, token));
         }
+
+        //[HttpPost("Register")]
+        //public async Task<IActionResult> Register(UserDto userRegisterDto)
+        //{
+        //    // Kullanıcı adı veya e-posta adresi ile daha önce kayıtlı kullanıcı olup olmadığını kontrol et
+        //    var existingUser =  _userService.GetByEmail(userRegisterDto.Email);
+        //    if (existingUser != null)
+        //    {
+        //        return CreateActionResult(CustomResponseDto<NoContentDto>.Fail(400, "Bu e-posta adresi ile daha önce bir hesap oluşturulmuş."));
+        //    }
+
+        //    // Kullanıcıyı User entity'sine dönüştür
+        //    var user = _mapper.Map<User>(userRegisterDto);
+        //    int userId = GetUserFromToken();
+
+        //    // Kullanıcının oluşturulma işlemi ile ilgili ekleme işlemleri
+        //    user.CreatedBy = userId;
+        //    user.UpdatedBy = userId;
+
+        //    // Şifreyi hash'le ve salt oluştur
+        //    byte[] passwordHash, passwordSalt;
+        //    HashingHelper.CreatePassword(userRegisterDto.Password, out passwordHash, out passwordSalt);
+
+        //    user.PasswordHash = passwordHash;
+        //    user.PasswordSalt = passwordSalt;
+
+        //    // Kullanıcıyı veritabanına kaydet
+        //    var createdUser = await _userService.AddAsync(user);
+
+        //    // Kullanıcı DTO'su ile cevap oluştur
+        //    var userResponseDto = _mapper.Map<UserDto>(createdUser);
+
+        //    return CreateActionResult(CustomResponseDto<UserDto>.Success(201, userResponseDto));
+        //}
+
     }
 }

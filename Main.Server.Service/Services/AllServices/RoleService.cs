@@ -15,7 +15,9 @@ namespace Main.Server.Service.Services.AllServices
     {
         private readonly IRoleRepository _roleRepository;
 
-        public RoleService(IGenericRepository<Role> repository, IUnitOfWorks unitOfWorks, IRoleRepository roleRepository) : base(repository, unitOfWorks)
+        public RoleService(IGenericRepository<Role> repository,
+            IUnitOfWorks unitOfWorks, IRoleRepository roleRepository) 
+            : base(repository, unitOfWorks)
         {
             _roleRepository = roleRepository;
         }
