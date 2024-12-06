@@ -21,6 +21,7 @@ namespace Main.Server.DataAccess
         public DbSet<Product> Products { get; set; }
         public DbSet<TaskEntity> TaskEntities { get; set; }
         public DbSet<TaskFile> TaskFiles { get; set; }
+        public DbSet<TaskStatusEntity> TaskStatus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
