@@ -10,6 +10,7 @@ using Main.Server.Core.Entities.TaskEntities;
 using Main.Server.Core.DTOs.TaskDTOs;
 using Main.Server.Core.DTOs.TaskDTOs.UpdateDTOs;
 using Main.Server.Service.Services;
+using Main.Server.Core.Enums;
 
 namespace generic_framework.Controller
 {
@@ -84,6 +85,23 @@ namespace generic_framework.Controller
             processEntity.UpdatedBy = userId;
             processEntity.CreatedBy = userId;
 
+            if (Enum.IsDefined(typeof(PriorityTypes), processEntity.PriortyTypesId))
+            {
+                processEntity.PriorityTypes = (PriorityTypes)processEntity.PriortyTypesId;
+            }
+            else
+            {
+                throw new Exception("Invalid PriorityTypesId provided.");
+            }
+
+            if (Enum.IsDefined(typeof(SubjectTypes), processEntity.SubjectTypesId))
+            {
+                processEntity.SubjectTypes = (SubjectTypes)processEntity.SubjectTypesId;
+            }
+            else
+            {
+                throw new Exception("Invalid SubjectTypesId provided.");
+            }
             var task = await _taskService.AddAsync(processEntity);
 
             // Dosyaları kaydet
@@ -111,6 +129,29 @@ namespace generic_framework.Controller
             currentTask.TaskStatuId = updateDto.TaskStatuId;
             currentTask.DeparmentId = updateDto.DeparmentId;
             currentTask.UserId = updateDto.UserId;
+            currentTask.MainTaskId = updateDto.MainTaskId;
+            currentTask.DevelopmentCompletionDate = updateDto.DevelopmentCompletionDate;
+            currentTask.EndDate = updateDto.EndDate;
+            currentTask.ProcessingDate = updateDto.ProcessingDate;
+            currentTask.PriortyTypesId = updateDto.PriortyTypesId;
+            currentTask.SubjectTypesId = updateDto.SubjectTypesId;
+            if (Enum.IsDefined(typeof(PriorityTypes), currentTask.PriortyTypesId))
+            {
+                currentTask.PriorityTypes = (PriorityTypes)currentTask.PriortyTypesId;
+            }
+            else
+            {
+                throw new Exception("Invalid PriorityTypesId provided.");
+            }
+
+            if (Enum.IsDefined(typeof(SubjectTypes), currentTask.SubjectTypesId))
+            {
+                currentTask.SubjectTypes = (SubjectTypes)currentTask.SubjectTypesId;
+            }
+            else
+            {
+                throw new Exception("Invalid SubjectTypesId provided.");
+            }
 
             _taskService.Update(currentTask);
 

@@ -26,6 +26,7 @@ namespace Main.Server.Service.Mappings
               CreateMap<Product,ProductDto>().ReverseMap();
               CreateMap<TaskEntity, TaskDto>().ReverseMap();
               CreateMap<TaskFile, FileDto>().ReverseMap();
+              CreateMap<TaskStatusEntity, TaskStatusDto>().ReverseMap();
         }
     }
 }

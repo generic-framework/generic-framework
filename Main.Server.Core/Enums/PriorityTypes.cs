@@ -10,7 +10,7 @@ namespace Main.Server.Core.Enums
     public enum PriorityTypes
     {
         Lowest = 1,
-        Log = 2,
+        Low = 2,
         Medium = 3,
         Higest = 4,
         High = 5
