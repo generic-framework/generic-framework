@@ -75,7 +75,7 @@ namespace generic_framework.controller
 
             var productResponseDto = _mapper.Map<ProductDto>(product);
 
-            return CreateActionResult(CustomResponseDto<ProductDto>.Success(201, productDto));
+            return CreateActionResult(CustomResponseDto<ProductDto>.Success(201, productResponseDto));
 
         }
 

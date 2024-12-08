@@ -83,7 +83,7 @@ namespace generic_framework.Controller
 
             var userResponseDto = _mapper.Map<UserDto>(user);
 
-            return CreateActionResult(CustomResponseDto<UserDto>.Success(201, userDto));
+            return CreateActionResult(CustomResponseDto<UserDto>.Success(201, userResponseDto));
 
         }
 

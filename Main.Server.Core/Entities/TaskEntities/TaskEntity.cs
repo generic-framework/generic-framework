@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Main.Server.Core.Entities.ProjectEntities;
 using Main.Server.Core.Entities.UserEntities;
 using Main.Server.Core.Enums;
 
@@ -39,6 +40,8 @@ namespace Main.Server.Core.Entities.TaskEntities
         public PriorityTypes? PriorityTypes { get; set; }
 
         public User? User { get; set; }
+
+        public Project? Project { get; set; }
 
         public TaskStatusEntity? TaskStatus { get; set; }
 

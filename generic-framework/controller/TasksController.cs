@@ -112,7 +112,7 @@ namespace generic_framework.Controller
 
             var taskResponseDto = _mapper.Map<TaskDto>(task);
 
-            return CreateActionResult(CustomResponseDto<TaskDto>.Success(201, taskDto));
+            return CreateActionResult(CustomResponseDto<TaskDto>.Success(201, taskResponseDto));
         }
 
         [HttpPut("Update")]

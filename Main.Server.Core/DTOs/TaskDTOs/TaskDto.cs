@@ -9,6 +9,7 @@ using Main.Server.Core.Entities;
 using Main.Server.Core.DTOs.TaskDTOs;
 using Main.Server.Core.Entities.TaskEntities;
 using Main.Server.Core.Enums;
+using Main.Server.Core.DTOs.ProjectDTOs;
 
 namespace Main.Server.Core.DTOs
 {
@@ -41,6 +42,8 @@ namespace Main.Server.Core.DTOs
         public SubjectTypes? SubjectTypes { get; set; }
 
         public PriorityTypes? PriorityTypes { get; set; }
+
+        public ProjectDto? Project { get; set; }
 
         public TaskDto? MainTask { get; set; }
 
