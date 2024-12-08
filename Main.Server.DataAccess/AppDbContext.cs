@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using Main.Server.Core.Entities;
 using Main.Server.Core.Entities.ProductEntities;
+using Main.Server.Core.Entities.ProjectEntities;
 using Main.Server.Core.Entities.RoleEntities;
 using Main.Server.Core.Entities.TaskEntities;
 using Main.Server.Core.Entities.UserEntities;
@@ -22,6 +23,8 @@ namespace Main.Server.DataAccess
         public DbSet<TaskEntity> TaskEntities { get; set; }
         public DbSet<TaskFile> TaskFiles { get; set; }
         public DbSet<TaskStatusEntity> TaskStatus { get; set; }
+        public DbSet<Project> Projects { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -55,9 +55,9 @@ namespace generic_framework.Controller
 
             var status = await _taskStatusService.AddAsync(processEntity);
 
-            var productResponseDto = _mapper.Map<TaskStatusDto>(status);
+            var taskStatusResponseDto = _mapper.Map<TaskStatusDto>(status);
 
-            return CreateActionResult(CustomResponseDto<TaskStatusDto>.Success(201, statusDto));
+            return CreateActionResult(CustomResponseDto<TaskStatusDto>.Success(201, taskStatusResponseDto));
         }
 
         [HttpPut("Update")]

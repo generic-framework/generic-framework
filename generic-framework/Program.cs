@@ -11,8 +11,16 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day) // Günlük dosya olarak loglarý kaydeder
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // CORS Ayarlarý
 builder.Services.AddCors(options =>
