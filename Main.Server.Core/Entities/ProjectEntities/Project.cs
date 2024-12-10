@@ -17,5 +17,8 @@ namespace Main.Server.Core.Entities.ProjectEntities
         public ProjectType? ProjectType { get; set; }
 
         public ICollection<TaskEntity>? ProjectTasks { get; set; }
+
+        public ICollection<ProjectUser>? ProjectUsers { get; set; } // Çoktan çoğa ilişki için
+
     }
 }

@@ -25,8 +25,6 @@ namespace Main.Server.Core.DTOs
 
         public int? DeparmentId { get; set; }
 
-        public int? UserId { get; set; }
-
         public int? MainTaskId { get; set; }
 
         public DateTime? DevelopmentCompletionDate { get; set; }
@@ -49,8 +47,9 @@ namespace Main.Server.Core.DTOs
 
         public TaskStatusDto? TaskStatus { get; set; }
 
-        public User? User { get; set; }
+        public List<TaskFileDto>? Files { get; set; }
 
-        public List<TaskFile>? Files { get; set; }
+        public List<TaskUser>? TaskUsers { get; set; }
+
     }
 }

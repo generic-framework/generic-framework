@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Main.Server.Core.DTOs.UserDTOs;
 using Main.Server.Core.Entities.TaskEntities;
+using Main.Server.Core.Entities.UserEntities;
 using Main.Server.Core.Enums;
 
 namespace Main.Server.Core.DTOs.ProjectDTOs
@@ -18,6 +20,9 @@ namespace Main.Server.Core.DTOs.ProjectDTOs
 
         public ProjectType? ProjectType { get; set; }
 
-        public List<TaskEntity>? ProjectTasks { get; set; }
+        public List<TaskDto>? ProjectTasks { get; set; }
+
+        public List<UserDto>? Users { get; set; }
+
     }
 }

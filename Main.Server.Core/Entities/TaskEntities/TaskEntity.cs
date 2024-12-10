@@ -21,8 +21,6 @@ namespace Main.Server.Core.Entities.TaskEntities
 
         public int? DeparmentId { get; set; }
 
-        public int? UserId { get; set; }
-
         public int? MainTaskId { get; set; }
 
         public DateTime? DevelopmentCompletionDate { get; set; }
@@ -39,8 +37,6 @@ namespace Main.Server.Core.Entities.TaskEntities
 
         public PriorityTypes? PriorityTypes { get; set; }
 
-        public User? User { get; set; }
-
         public Project? Project { get; set; }
 
         public TaskStatusEntity? TaskStatus { get; set; }
@@ -48,6 +44,9 @@ namespace Main.Server.Core.Entities.TaskEntities
         public TaskEntity? MainTask { get; set; }
 
         public ICollection<TaskFile>? Files { get; set; }
+
+        public ICollection<TaskUser>? TaskUsers { get; set; }
+
 
     }
 }

@@ -128,7 +128,7 @@ namespace generic_framework.Controller
             currentTask.ProjectId = updateDto.ProjectId;
             currentTask.TaskStatuId = updateDto.TaskStatuId;
             currentTask.DeparmentId = updateDto.DeparmentId;
-            currentTask.UserId = updateDto.UserId;
+            currentTask.TaskUsers = updateDto.TaskUsers;
             currentTask.MainTaskId = updateDto.MainTaskId;
             currentTask.DevelopmentCompletionDate = updateDto.DevelopmentCompletionDate;
             currentTask.EndDate = updateDto.EndDate;

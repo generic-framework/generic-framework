@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 using Main.Server.Core.DTOs.UserDTOs;
 using Main.Server.Core.Entities.UserEntities;
 
-namespace Main.Server.Core.DTOs.RoleDTOs
+namespace Main.Server.Core.DTOs.DepartmentDTOs
 {
-    public class RoleDto : BaseDto
+    public class DepartmentDto
     {
-        public string RoleName { get; set; }
+        public int Id { get; set; }
 
-        public bool IsActive { get; set; }
+        public string DepartmentName { get; set; }
+
+        public string Description { get; set; }
 
         public List<UserDto>? Users { get; set; }
     }
