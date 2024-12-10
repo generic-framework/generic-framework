@@ -11,5 +11,7 @@ namespace Main.Server.Core.Entities.TaskEntities
         public string StatusName { get; set; }
 
         public int? StatusPosition { get; set; }
+
+        public ICollection<TaskEntity>? TaskEntities { get; set; }
     }
 }

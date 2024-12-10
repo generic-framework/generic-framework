@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Main.Server.Core.DTOs.ProjectDTOs;
 using Main.Server.Core.Entities;
+using Main.Server.Core.Entities.TaskEntities;
 using Main.Server.Core.Enums;
 
 namespace Main.Server.Core.DTOs.TaskDTOs.UpdateDTOs
@@ -21,8 +23,6 @@ namespace Main.Server.Core.DTOs.TaskDTOs.UpdateDTOs
 
         public int? DeparmentId { get; set; }
 
-        public int? UserId { get; set; }
-
         public int? MainTaskId { get; set; }
 
         public int? PriortyTypesId { get; set; }
@@ -39,6 +39,14 @@ namespace Main.Server.Core.DTOs.TaskDTOs.UpdateDTOs
 
         public DateTime? EndDate { get; set; }
 
-        public List<TaskFile>? Files { get; set; }
+        public ProjectDto? Project { get; set; }
+
+        public TaskDto? MainTask { get; set; }
+
+        public TaskStatusDto? TaskStatus { get; set; }
+
+        public List<TaskFileDto>? Files { get; set; }
+
+        public List<TaskUser>? TaskUsers { get; set; }
     }
 }

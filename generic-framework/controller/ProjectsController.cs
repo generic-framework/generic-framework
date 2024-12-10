@@ -5,6 +5,9 @@ using Main.Server.Core.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Main.Server.Core.DTOs.ProjectDTOs;
 using Main.Server.Core.Entities.ProjectEntities;
+using Microsoft.EntityFrameworkCore;
+using Main.Server.Service.Services.AllServices;
+using Main.Server.Core.DTOs.ProductDTOs;
 
 namespace generic_framework.Controller
 {
@@ -13,11 +16,15 @@ namespace generic_framework.Controller
     public class ProjectsController : CustomBaseController
     {
         private readonly IProjectService _projectService;
+        private readonly IUserService _userService;
+        private readonly IProjectUserService _projectUserService;
         private readonly IMapper _mapper;
 
-        public ProjectsController(IProjectService projectService, IMapper mapper)
+        public ProjectsController(IProjectService projectService, IUserService userService, IProjectUserService projectUserService, IMapper mapper)
         {
             _projectService = projectService;
+            _userService = userService;
+            _projectUserService = projectUserService;
             _mapper = mapper;
         }
 
@@ -91,5 +98,34 @@ namespace generic_framework.Controller
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
 
         }
+
+        [HttpPost("InserUserToProject")]
+        public async Task<IActionResult> AddUserToProject([FromBody] ProjectUserDto projectUserDto)
+        {
+
+            int userId = GetUserFromToken();
+
+            var processEntity = _mapper.Map<ProjectUser>(projectUserDto);
+
+            processEntity.UpdatedBy = userId;
+            processEntity.CreatedBy = userId;
+            // Varlık doğrulama
+            var user = await _userService.GetByIdAsync((int)projectUserDto.UserId);
+            var project = await _projectService.GetByIdAsync((int)projectUserDto.ProjectId);
+
+            if (user == null || project == null)
+            {
+                return NotFound("User or Project not found");
+            }
+
+
+
+            var projectUsers= await _projectUserService.AddAsync(processEntity);
+            var projectResponseDto = _mapper.Map<ProjectUserDto>(projectUsers);
+
+            return CreateActionResult(CustomResponseDto<ProjectUserDto>.Success(201, projectResponseDto));
+
+        }
+
     }
 }
