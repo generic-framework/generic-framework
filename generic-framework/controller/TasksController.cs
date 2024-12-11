@@ -11,6 +11,9 @@ using Main.Server.Core.DTOs.TaskDTOs;
 using Main.Server.Core.DTOs.TaskDTOs.UpdateDTOs;
 using Main.Server.Service.Services;
 using Main.Server.Core.Enums;
+using Main.Server.Core.DTOs.ProjectDTOs;
+using Main.Server.Core.Entities.ProjectEntities;
+using Main.Server.Service.Services.AllServices;
 
 namespace generic_framework.Controller
 {
@@ -20,11 +23,15 @@ namespace generic_framework.Controller
     {
         private readonly ITaskService _taskService;
         private readonly IMapper _mapper;
+        private readonly IUserService _userService;
+        private readonly ITaskUserService _taskUserService;
 
-        public TasksController(ITaskService taskService, IMapper mapper)
+        public TasksController(ITaskService taskService, IUserService userService, IMapper mapper, ITaskUserService taskUserService)
         {
             _taskService = taskService;
             _mapper = mapper;
+            _userService = userService;
+            _taskUserService = taskUserService;
         }
 
         [HttpGet]
@@ -187,6 +194,34 @@ namespace generic_framework.Controller
                 // Dosya meta bilgilerini kaydet
                 await _taskService.SaveFileAsync(fileName, filePath, file.Length, taskId);
             }
+        }
+
+        [HttpPost("InserUserToTask")]
+        public async Task<IActionResult> AddUserToTask([FromBody] TaskUserDto taskUserDto)
+        {
+
+            int userId = GetUserFromToken();
+
+            var processEntity = _mapper.Map<TaskUser>(taskUserDto);
+
+            processEntity.UpdatedBy = userId;
+            processEntity.CreatedBy = userId;
+            // Varlık doğrulama
+            var user = await _userService.GetByIdAsync((int)taskUserDto.UserId);
+            var task = await _taskService.GetByIdAsync((int)taskUserDto.TaskId);
+
+            if (user == null || task == null)
+            {
+                return NotFound("Task or Project not found");
+            }
+
+
+
+            var taskUsers = await _taskUserService.AddAsync(processEntity);
+            var taskResponseDto = _mapper.Map<TaskUserDto>(taskUsers);
+
+            return CreateActionResult(CustomResponseDto<TaskUserDto>.Success(201, taskResponseDto));
+
         }
     }
 }

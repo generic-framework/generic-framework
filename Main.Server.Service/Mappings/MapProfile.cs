@@ -29,8 +29,9 @@ namespace Main.Server.Service.Mappings
               CreateMap<Role,RoleDto>().ReverseMap();  
               CreateMap<Product,ProductDto>().ReverseMap();
               CreateMap<TaskEntity, TaskDto>().ReverseMap();
-              CreateMap<TaskFile, FileDto>().ReverseMap();
-              CreateMap<TaskStatusEntity, TaskStatusDto>().ReverseMap();
+              CreateMap<TaskFile, TaskFileDto>().ReverseMap();
+              CreateMap<TaskUser, TaskUserDto>().ReverseMap();
+            CreateMap<TaskStatusEntity, TaskStatusDto>().ReverseMap();
               CreateMap<Project, ProjectDto>().ReverseMap();
               CreateMap<Department, DepartmentDto>().ReverseMap();
               CreateMap<ProjectUser, ProjectUserDto>().ReverseMap();
