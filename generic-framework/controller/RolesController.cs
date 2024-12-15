@@ -72,7 +72,6 @@ namespace generic_framework.Controller
             var userResponseDto = _mapper.Map<RoleDto>(role);
 
             return CreateActionResult(CustomResponseDto<RoleDto>.Success(201, userResponseDto));
-
         }
 
         [HttpPut("Update")]
@@ -88,7 +87,6 @@ namespace generic_framework.Controller
             _roleService.Update(currentRole);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
-
         }
     }
 }

@@ -1,16 +1,13 @@
 ﻿using AutoMapper;
 using generic_framework.Filters;
 using Main.Server.Core.DTOs;
-using Main.Server.Core.Entities.ProductEntities;
 using Main.Server.Core.Services.IServices;
-using Main.Server.Service.Services.AllServices;
 using Microsoft.AspNetCore.Mvc;
 using Main.Server.Core.DTOs.UserDTOs;
 using Main.Server.Core.Entities.UserEntities;
 using Main.Server.Core.DTOs.UserDTOs.UpdateDTOs;
 using Main.Server.Core.Entities;
 using Main.Server.Service.Hashing;
-using Microsoft.AspNetCore.Authorization;
 
 namespace generic_framework.Controller
 {
@@ -101,7 +98,6 @@ namespace generic_framework.Controller
             _userService.Update(currentUser);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
-
         }
 
         [HttpPost("[action]")]

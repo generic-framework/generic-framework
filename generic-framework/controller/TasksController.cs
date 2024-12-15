@@ -1,19 +1,13 @@
 ﻿using AutoMapper;
 using generic_framework.Filters;
-using Main.Server.Core.DTOs.UserDTOs.UpdateDTOs;
-using generic_framework.Controller;
 using Main.Server.Core.DTOs;
-
 using Main.Server.Core.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Main.Server.Core.Entities.TaskEntities;
 using Main.Server.Core.DTOs.TaskDTOs;
 using Main.Server.Core.DTOs.TaskDTOs.UpdateDTOs;
-using Main.Server.Service.Services;
 using Main.Server.Core.Enums;
-using Main.Server.Core.DTOs.ProjectDTOs;
-using Main.Server.Core.Entities.ProjectEntities;
-using Main.Server.Service.Services.AllServices;
+
 
 namespace generic_framework.Controller
 {
@@ -38,9 +32,16 @@ namespace generic_framework.Controller
         public async Task<IActionResult> GetAll()
         {
             var tasks = _taskService.GetAll();
+            var tasksUser = _taskUserService.GetAll().ToList();
+            foreach (var task in tasks) {
+                foreach (var taskUser in tasksUser) {
+                    if (taskUser.TaskId == task.Id) {
+                        task.TaskUsers.Add(taskUser);           
+                    }         
+                }
+            }
 
             var dtos = _mapper.Map<List<TaskDto>>(tasks).ToList();
-
             return CreateActionResult(CustomResponseDto<List<TaskDto>>.Success(200, dtos));
         }
 
@@ -215,13 +216,10 @@ namespace generic_framework.Controller
                 return NotFound("Task or Project not found");
             }
 
-
-
             var taskUsers = await _taskUserService.AddAsync(processEntity);
             var taskResponseDto = _mapper.Map<TaskUserDto>(taskUsers);
 
             return CreateActionResult(CustomResponseDto<TaskUserDto>.Success(201, taskResponseDto));
-
         }
     }
 }

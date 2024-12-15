@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Main.Server.Core.Entities.DepartmentEntities;
-using Main.Server.Core.Entities.ProductEntities;
 using Main.Server.Core.Repositories.IRepositories;
 
 namespace Main.Server.DataAccess.Repositories.AllRepositories

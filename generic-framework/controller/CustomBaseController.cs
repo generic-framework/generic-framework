@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace generic_framework.Controller
 {
-
     public class CustomBaseController : ControllerBase
     {
         [NonAction]

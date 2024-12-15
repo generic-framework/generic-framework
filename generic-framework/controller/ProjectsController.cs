@@ -5,9 +5,6 @@ using Main.Server.Core.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Main.Server.Core.DTOs.ProjectDTOs;
 using Main.Server.Core.Entities.ProjectEntities;
-using Microsoft.EntityFrameworkCore;
-using Main.Server.Service.Services.AllServices;
-using Main.Server.Core.DTOs.ProductDTOs;
 
 namespace generic_framework.Controller
 {
@@ -79,7 +76,6 @@ namespace generic_framework.Controller
             var projectResponseDto = _mapper.Map<ProjectDto>(project);
 
             return CreateActionResult(CustomResponseDto<ProjectDto>.Success(201, projectResponseDto));
-
         }
 
         [HttpPut("Update")]
@@ -96,7 +92,6 @@ namespace generic_framework.Controller
             _projectService.Update(currentProject);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
-
         }
 
         [HttpPost("InserUserToProject")]
@@ -118,14 +113,10 @@ namespace generic_framework.Controller
                 return NotFound("User or Project not found");
             }
 
-
-
             var projectUsers= await _projectUserService.AddAsync(processEntity);
             var projectResponseDto = _mapper.Map<ProjectUserDto>(projectUsers);
 
             return CreateActionResult(CustomResponseDto<ProjectUserDto>.Success(201, projectResponseDto));
-
         }
-
     }
 }

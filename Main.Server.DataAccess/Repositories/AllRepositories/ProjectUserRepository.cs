@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Main.Server.Core.Entities.ProjectEntities;
 using Main.Server.Core.Repositories.IRepositories;
-using Microsoft.EntityFrameworkCore.Update.Internal;
 
 namespace Main.Server.DataAccess.Repositories.AllRepositories
 {
