@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Main.Server.Core.DTOs.UserDTOs;
-using Main.Server.Core.Entities.TaskEntities;
-using Main.Server.Core.Entities.UserEntities;
 using Main.Server.Core.Enums;
 
 namespace Main.Server.Core.DTOs.ProjectDTOs

@@ -72,7 +72,6 @@ namespace generic_framework.Controller
             var departmentResponseDto = _mapper.Map<DepartmentDto>(department);
 
             return CreateActionResult(CustomResponseDto<DepartmentDto>.Success(201, departmentResponseDto));
-
         }
 
         [HttpPut("Update")]
@@ -90,7 +89,6 @@ namespace generic_framework.Controller
             _departmentService.Update(currentDepartment);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
-
         }
     }
 }

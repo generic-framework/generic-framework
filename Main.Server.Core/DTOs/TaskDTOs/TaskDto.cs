@@ -15,7 +15,10 @@ namespace Main.Server.Core.DTOs
 {
     public class TaskDto
     {
+        public int Id { get; set; }
         public string TaskTitle { get; set; }
+
+        public string? IssueTitle { get; set; }
 
         public string TaskDescription { get; set; }
 
@@ -49,7 +52,7 @@ namespace Main.Server.Core.DTOs
 
         public List<TaskFileDto>? Files { get; set; }
 
-        public List<TaskUser>? TaskUsers { get; set; }
+        public List<TaskUserDto>? TaskUsers { get; set; }
 
     }
 }

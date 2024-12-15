@@ -13,7 +13,10 @@ namespace Main.Server.Core.DTOs.TaskDTOs.UpdateDTOs
     public class TaskUpdateDto
     {
         public int Id { get; set; }
+
         public string TaskTitle { get; set; }
+
+        public string? IssueTitle { get; set; }
 
         public string TaskDescription { get; set; }
 

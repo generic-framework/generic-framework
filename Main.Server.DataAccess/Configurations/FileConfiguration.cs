@@ -5,7 +5,6 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using Main.Server.Core.Entities;
-using Main.Server.Core.Entities.ProductEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

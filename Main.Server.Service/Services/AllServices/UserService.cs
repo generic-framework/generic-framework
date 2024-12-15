@@ -12,7 +12,6 @@ using Main.Server.Core.Repositories.IRepositories;
 using Main.Server.Core.Services;
 using Main.Server.Core.Services.IServices;
 using Main.Server.Core.UnitOfWorks;
-using Main.Server.DataAccess.Repositories.AllRepositories;
 using Main.Server.Service.Hashing;
 
 namespace Main.Server.Service.Services.AllServices

@@ -13,6 +13,8 @@ namespace Main.Server.Core.Entities.TaskEntities
     {
         public string TaskTitle { get; set; }
 
+        public string? IssueTitle { get; set; }
+
         public string TaskDescription { get; set; }
 
         public int? ProjectId { get; set; }

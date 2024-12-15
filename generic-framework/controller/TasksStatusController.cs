@@ -74,7 +74,6 @@ namespace generic_framework.Controller
             _taskStatusService.Update(currentStatus);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
-
         }
 
         [ServiceFilter(typeof(NotFoundFilter<TaskStatusEntity>))]
@@ -91,6 +90,5 @@ namespace generic_framework.Controller
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
-
     }
 }

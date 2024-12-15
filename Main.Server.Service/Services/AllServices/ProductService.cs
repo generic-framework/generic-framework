@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Main.Server.Core.Entities.ProductEntities;
-using Main.Server.Core.Entities.UserEntities;
 using Main.Server.Core.Repositories;
 using Main.Server.Core.Repositories.IRepositories;
 using Main.Server.Core.Services.IServices;

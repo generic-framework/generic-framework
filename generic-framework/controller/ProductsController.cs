@@ -76,7 +76,6 @@ namespace generic_framework.controller
             var productResponseDto = _mapper.Map<ProductDto>(product);
 
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(201, productResponseDto));
-
         }
 
         [HttpPut("Update")]
@@ -93,7 +92,6 @@ namespace generic_framework.controller
             _productService.Update(currentProduct);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
-
         }
     }
 }
