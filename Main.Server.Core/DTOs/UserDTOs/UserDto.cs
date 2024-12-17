@@ -22,6 +22,8 @@ namespace Main.Server.Core.DTOs.UserDTOs
 
         public string Email { get; set; }
 
+        public string PersonTitle { get; set; }
+
         public int? RoleId { get; set; }
 
         public int DepartmentId { get; set; }

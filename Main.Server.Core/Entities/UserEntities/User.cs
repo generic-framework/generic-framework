@@ -18,6 +18,8 @@ namespace Main.Server.Core.Entities.UserEntities
 
         public string Email { get; set; }
 
+        public string PersonTitle { get; set; }
+
         public byte[] PasswordSalt { get; set; }
 
         public byte[] PasswordHash { get; set; }

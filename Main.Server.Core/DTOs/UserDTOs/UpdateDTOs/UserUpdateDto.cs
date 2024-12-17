@@ -13,6 +13,8 @@ namespace Main.Server.Core.DTOs.UserDTOs.UpdateDTOs
 
         public string Surname { get; set; }
 
+        public string PersonTitle { get; set; }
+
         public int? RoleId { get; set; }
 
     }
