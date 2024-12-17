@@ -94,6 +94,7 @@ namespace generic_framework.Controller
             currentUser.UpdatedBy = userId;
             currentUser.Name = updateDto.Name;
             currentUser.Surname = updateDto.Surname;
+            currentUser.PersonTitle = updateDto.PersonTitle;
 
             _userService.Update(currentUser);
 
